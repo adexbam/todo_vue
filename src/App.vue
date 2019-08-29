@@ -3,7 +3,7 @@
     <input v-model="currentTodo" @keydown.enter="addTodo()" placeholder="Add a todo">
     <ul class="todos">
       <li v-for="todo in todos" :key="todo.id">
-        {{ todo.label }}
+        {{ todo.label }} <input type='checkbox'>
       </li>
     </ul>
     <button @click="removeTodo(todo)">Delete</button>
