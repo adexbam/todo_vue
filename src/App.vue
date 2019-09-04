@@ -1,24 +1,25 @@
 <template>
   <div class='container'>
     <h1>My Todo List</h1>
-    <input v-model="currentTodo" @keydown.enter="addTodo(todo)" placeholder="Add a todo">
-    <ul class="todos">
-      <li v-for='(todo, index) in todos' :key='todo.id'>
-        <input type='checkbox' v-model='todo.completed' >
-          <div> 
-          <span 
-            class="todo-item-label"
-            :class='{completed: todo.completed}' 
-            @dblclick='editTodo(todo)' 
-            v-if="!todo.edit">
-              {{todo.label}}
-          </span> 
-
-            <input v-else class="todo-item-edit" type="text" v-model='todo.label' @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.escape="doneEdit(todo)"> 
-          </div>
-        <button class='closeButton' @click="removeTodo(index)">Delete</button>
-      </li>
-    </ul>
+    <md-card class="cardBox">
+      <md-field>
+       <md-input v-model="currentTodo" @keydown.enter="addTodo(todo)" placeholder="Click to add a todo"></md-input>
+      </md-field>
+      <ul class="todos">
+        <li v-for='(todo, index) in todos' :key='todo.id'>
+          <input class='checkboxButton' type='checkbox' v-model='todo.completed' >
+            <span 
+              class="todo-item-label"
+              :class='{completed: todo.completed}' 
+              @dblclick='editTodo(todo)' 
+              v-if="!todo.edit">
+                {{todo.label}}
+            </span> 
+            <md-input v-else class="todo-item-edit" type="text" v-model='todo.label' @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.escape="doneEdit(todo)"></md-input> 
+          <md-raised class='removeTodoButton' @click="removeTodo(index)">Cancel</md-raised>
+        </li>
+      </ul>
+    </md-card>
   </div>
 </template>
 
@@ -51,4 +52,34 @@ export default {
 </script>
 
 <style>
+#app {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+li {
+  list-style: none;
+}
+.container {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+.completed {
+  text-decoration: line-through;
+}
+.todos {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.cardBox {
+padding: 10px;
+}
+.removeTodoButton {
+  float: right;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+}
+.checkboxButton {
+  float: left;
+}
 </style>
