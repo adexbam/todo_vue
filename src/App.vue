@@ -1,7 +1,7 @@
 <template>
   <div class='container'>
     <h1>My Todo List</h1>
-
+      <md-card class="cardBox">
       <md-field>
        <md-input v-model="currentTodo" @keydown.enter="addTodo(todo)" placeholder="Click to add a todo"></md-input>
       </md-field>
@@ -16,10 +16,10 @@
                 {{todo.label}}
             </span> 
             <md-input v-else class="todo-item-edit" type="text" v-model='todo.label' @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.escape="doneEdit(todo)"></md-input> 
-          <md-button class='removeTodoButton' @click="removeTodo(index)">Cancel</md-button>
+          <md-raised class='removeTodoButton' @click="removeTodo(index)">Cancel</md-raised>
         </li>
       </ul>
-
+      </md-card>
   </div>
 </template>
 
@@ -27,7 +27,14 @@
 export default {
   data() {
     return {
-      todos: [],
+      todos: [
+        {
+          'id': 1,
+          'label': 'let us start',
+          'completed': true,
+          'edit': false
+        },
+      ],
       currentTodo: '',
       editedTodo: null
     };
