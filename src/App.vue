@@ -73,7 +73,8 @@ li {
 
 @media only screen and (max-width: 600px) {
   .container {
-    width: 100%;;
+  margin: auto;
+  text-align: center;
   }
 }
 
